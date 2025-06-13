@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactieve Tijdslijn – Vrijgezellen Maxim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e9f0f7;
+      color: #1d2d44;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 750px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 28px;
+      color: #1a2533;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 50px;
+      border-left: 4px solid #3a5068;
+    }
+
+    .event {
+      position: relative;
+      margin-bottom: 30px;
+      cursor: pointer;
+      background: white;
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 12px rgba(58, 80, 104, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .event:hover {
+      box-shadow: 0 6px 18px rgba(58, 80, 104, 0.25);
+    }
+
+    .event::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: #3a5068;
+      border-radius: 50%;
+      position: absolute;
+      left: -41px;
+      top: 20px;
+      box-shadow: 0 0 8px rgba(58, 80, 104, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    .event.open::before {
+      background-color: #ff6f61;
+      box-shadow: 0 0 10px #ff6f61;
+    }
+
+    .event-header {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 17px;
+      color: #2c3e50;
+    }
+
+    .time {
+      flex-shrink: 0;
+      width: 120px;
+      color: #778ca3;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .icon {
+      width: 26px;
+      height: 26px;
+      margin: 0 15px;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
+      flex-shrink: 0;
+    }
+
+    .details {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-left: 135px;
+      font-size: 15px;
+      color: #4a5a6a;
+      background: #f0f4fa;
+      padding: 0 15px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px #dde7f2;
+      transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
+    }
+
+    .event.open .details {
+      max-height: 400px; /* ruim genoeg */
+      opacity: 1;
+      padding: 10px 15px;
+      margin-top: 8px;
+    }
+
+    a {
+      color: #3a5068;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ff6f61;
+      text-decoration: underline;
+    }
+
+    /* Kleine aanpassing voor emoji in details */
+    .details > * {
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Planning Vrijgezellen Maxim</h1>
+    <div class="timeline">
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">10:30 – 11:00</div>
+          <img class="icon" src="https://img.icons8.com/color/48/marker.png" alt="Aankomst" />
+          <div>Aankomst & Verzamelen</div>
+        </div>
+        <div class="details">
+          📍 Route: <a href="https://maps.app.goo.gl/it4xok6yr1HAuzMD6" target="_blank" rel="noopener">Klik hier</a><br />
+          🚗 Met de auto of 🚋 tram vanaf Centraal Station
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">10:30 – 11:00</div>
+          <img class="icon" src="https://img.icons8.com/color/48/walking.png" alt="Wandeling" />
+          <div>Wandeling naar eerste activiteit</div>
+        </div>
+        <div class="details">
+          📍 Route:  
+          <a href="https://maps.app.goo.gl/9HiCtNHhmpPtmDua9" target="_blank" rel="noopener">Klik hier</a>
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">11:00 – 12:00</div>
+          <img class="icon" src="https://img.icons8.com/color/48/virtual-reality.png" alt="VR" />
+          <div>The Park VR Experience</div>
+        </div>
+        <div class="details">
+          📍 Vlaamse Kaai 30, Antwerpen<br />
+          🎮 Silver package: 5 personen – €199,95 (betaald)<br />
+          🔗 Info: <a href="https://www.theparkplayground.com" target="_blank" rel="noopener">Klik hier</a>
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">12:00 – 14:15</div>
+          <img class="icon" src="https://img.icons8.com/color/48/sandwich.png" alt="Lunch" />
+          <div>Lunch @ Philly Sandwich Bar</div>
+        </div>
+        <div class="details">
+          📍 Route: <a href="https://maps.app.goo.gl/oxStD1JUZVfr9jX57" target="_blank" rel="noopener">Klik hier</a><br />
+          📄 Menu: <a href="https://www.phillysandwich.be/our-menu/" target="_blank" rel="noopener">Klik hier</a>
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">14:30 – 18:00</div>
+          <img class="icon" src="https://img.icons8.com/color/48/dice.png" alt="Spelletjes" />
+          <div>Board Games @ The Playground</div>
+        </div>
+        <div class="details">
+          📍Route: <a href="https://maps.app.goo.gl/Dk1r5BdBxXbby6kT6" target="_blank" rel="noopener">Klik hier</a><br />
+          🎟️ Reservatie bevestigd voor 5 personen
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">18:00 – 18:45</div>
+          <img class="icon" src="https://img.icons8.com/color/48/beer.png" alt="Drankje" />
+          <div>Drankje in de buurt</div>
+        </div>
+        <div class="details">
+          Vrije keuze voor een drankje 🍻 in de buurt
+        </div>
+      </div>
+
+      <div class="event" onclick="toggle(this)">
+        <div class="event-header">
+          <div class="time">19:00</div>
+          <img class="icon" src="https://img.icons8.com/color/48/noodles.png" alt="Soju" />
+          <div>Diner @ The Soju Bar</div>
+        </div>
+        <div class="details">
+          📍Route: <a href="https://maps.app.goo.gl/4wptnchSXbhUFs3m6" target="_blank" rel="noopener">Klik hier</a><br />
+          📄Menu: <a href="https://www.sojubar.com/antwerp/" target="_blank" rel="noopener">Klik hier</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggle(element) {
+      element.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
